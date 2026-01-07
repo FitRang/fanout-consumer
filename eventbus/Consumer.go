@@ -93,7 +93,7 @@ func (p *Consumer) start(handler Handler) {
 				case *kafka.Message:
 					if err := handler(e.Key, e.Value); err != nil {
 						log.Printf("handler failed (offset %d): %v", e.TopicPartition.Offset, err)
-						continue 
+						continue
 					}
 
 					if _, err := p.c.CommitMessage(e); err != nil {
